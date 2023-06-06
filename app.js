@@ -1,14 +1,13 @@
-const { frutas, dinero } = require('./frutas');
-const cowsay = require("cowsay");
+const http = require('http'); ;
+const hostname = '127.0.0.1';
+const port = 3000;
 
-frutas.forEach(item => {
-    console.count(item);
+const server = http.createServer((req, res) => {
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
+    res.end('Hello World');
 });
 
-console.log(cowsay.say({
-    text: "Hola amigos de bluuweb",
-    e: "oO",
-    T: "U "
-}));
-
-console.log(dinero);
+server.listen(port, hostname, () => {
+    console.log(`Server running at http://${ hostname }:${ port }`)
+});
