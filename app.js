@@ -20,7 +20,7 @@ app.get('/service', (req, res) => {
 });
 
 app.use((req, res) => {
-    res.status(404).sendFile(__dirname + '/public/404.html');
+    res.status(404).render('404', { titulo: "Titulo pagina 404" });
 });
 
 app.listen(port, () => {
