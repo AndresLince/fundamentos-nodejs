@@ -8,6 +8,7 @@ app.set('views', __dirname + '/views');
 app.use(express.static(__dirname + '/public'));
 
 app.use('/', require('./routes/WebRoutes'));
+app.use('/pets', require('./routes/Pets'));
 
 app.use((req, res) => {
     res.status(404).render('404', { titulo: "Titulo pagina 404" });
