@@ -1,7 +1,15 @@
 <%- include('template/header', { pageTitle: 'Crear mascota' }) %>
 
     <body>
-        <h1>
-            <%= titulo %>
-        </h1>
+        <div class="container">
+            <h1>
+                <%= titulo %>
+            </h1>
+            <form action="/pets" method="POST">
+                <input type="text" placeholder="nombre" name="name" class="form-control my-2">
+                <input type="text" placeholder="descripcion" name="description" class="form-control my-2">
+                <button type="submit" class="btn btn-success btn-block">Agregar</button>
+            </form>
+        </div>
+
         <%- include('template/footer') %>
