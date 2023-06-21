@@ -19,6 +19,11 @@ router.get('/create', (req, res) => {
     res.render('create',{
         titulo: 'Crear mascota'
     })
+});
+
+router.post('/', (req, res) => {
+    const body =  req.body;
+    console.log(body);
 })
 
 module.exports = router;
