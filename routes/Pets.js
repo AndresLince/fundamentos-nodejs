@@ -15,4 +15,10 @@ router.get('/', async (req, res) => {
     }
 });
 
+router.get('/create', (req, res) => {
+    res.render('create',{
+        titulo: 'Crear mascota'
+    })
+})
+
 module.exports = router;
