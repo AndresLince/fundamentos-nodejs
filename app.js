@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
 require('dotenv').config();
 const user = process.env.dbUser;
 const password = process.env.dbUserpassword;
@@ -14,6 +15,9 @@ mongoose.connect(uri, {
 .catch(e => console.log(e));
 
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json());
+
 const port = process.env.port || 3000;
 
 app.set('view engine', 'ejs');
