@@ -24,7 +24,11 @@
                                 <th scope="row"><%= element.id %></th>
                                 <td><%= element.name %></td>
                                 <td><%= element.description %></td>
-                                <td>@mdo</td>
+                                <td>
+                                    <a class="btn btn-warning" href="/pets/<%= element.id %>">
+                                        Editar
+                                    </a>
+                                </td>
                             </tr>
                             <% }) %>
                                 <% } %>
