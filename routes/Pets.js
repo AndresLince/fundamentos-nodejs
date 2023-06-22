@@ -21,9 +21,14 @@ router.get('/create', (req, res) => {
     })
 });
 
-router.post('/', (req, res) => {
+router.post('/', async(req, res) => {
     const body =  req.body;
-    console.log(body);
+    try {
+        await pet.create(body);
+        res.redirect('/pets');
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 module.exports = router;
