@@ -33,17 +33,25 @@ router.post('/', async(req, res) => {
 
 router.get('/:id', async(req, res) => {
     const id = req.params.id;
-
+    let petDb = null;
+    let dbError = false;
     try {
-        const petDb = await pet.findOne({ _id: id });
+        petDb = await pet.findOne({ _id: id });
         res.render('detail', {
             pet: petDb,
             titulo: 'Detalle de mascota'
         });
     } catch (error) {
+        dbError = true;
         console.log(error);
-        res.redirect('/404');
     }
+    console.log('error', dbError);
+    res.render('detail', {
+        pet: petDb,
+        titulo: 'Detalle de mascota',
+        error: dbError,
+        errorMessage: 'No se encontro la mascota con ese id'
+    });
 
 });
 
