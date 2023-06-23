@@ -47,12 +47,26 @@
             });
 
             const editForm = document.getElementById('editForm');
-            editForm.addEventListener('submit', (e) => {
+            editForm.addEventListener('submit', async(e) => {
                 e.preventDefault();
-                console.log('submit');
                 const name = editForm.elements['name'].value;
                 const description = editForm.elements['description'].value;
                 const id = editForm.dataset.id;
-                console.log(name, description, id);
+
+                try {
+                    const data = await fetch(`/pets/${id}`, {
+                        method: 'put',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ description, name })
+                    });
+                    const response = await data.json();
+                    if (response.status === 200) {
+                        //location.href = '/pets';
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
             })
         </script>
