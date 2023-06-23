@@ -59,7 +59,7 @@ router.delete('/:id', async(req, res) => {
     const id = req.params.id;
 
     try {
-        const deletedPet = pet.findByIdAndDelete({ _id: id});
+        const deletedPet = await pet.findByIdAndDelete({ _id: id});
         if (deletedPet) {
             res.json({
                 status: 200,
