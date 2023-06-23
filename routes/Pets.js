@@ -37,10 +37,6 @@ router.get('/:id', async(req, res) => {
     let dbError = false;
     try {
         petDb = await pet.findOne({ _id: id });
-        res.render('detail', {
-            pet: petDb,
-            titulo: 'Detalle de mascota'
-        });
     } catch (error) {
         dbError = true;
         console.log(error);
@@ -84,7 +80,7 @@ router.put('/:id', async(req, res) => {
     const id = req.params.id;
     const body = req.body;
     try {
-        const petDb = pet.findByIdAndUpdate(id, body, {
+        const petDb = await pet.findByIdAndUpdate(id, body, {
             useFindAndModify: false
         });
 
