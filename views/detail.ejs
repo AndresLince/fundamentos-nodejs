@@ -9,9 +9,9 @@
                 <p><%= errorMessage %></p>
             <% } %>
             <% if (!error) { %>
-                <form action="">
-                    <input type="text" value="<%= pet.name %>" class="form-control my-2">
-                    <input type="text" value="<%= pet.description %>" class="form-control my-2">
+                <form id="editForm" data-id="<%= pet.id %>">
+                    <input type="text" value="<%= pet.name %>" class="form-control my-2" name="name">
+                    <input type="text" value="<%= pet.description %>" class="form-control my-2" name="description">
                     <button type="submit" class="btn btn-warning btn-block">Guardar</button>
                 </form>
                 <a class="btn btn-danger btn-block my-2" id="btnDelete" data-id="<%= pet.id %>">
@@ -45,4 +45,14 @@
                     console.log(error);
                 }
             });
+
+            const editForm = document.getElementById('editForm');
+            editForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                console.log('submit');
+                const name = editForm.elements['name'].value;
+                const description = editForm.elements['description'].value;
+                const id = editForm.dataset.id;
+                console.log(name, description, id);
+            })
         </script>
