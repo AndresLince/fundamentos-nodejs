@@ -84,9 +84,26 @@ router.put('/:id', async(req, res) => {
     const id = req.params.id;
     const body = req.body;
     try {
+        const petDb = pet.findByIdAndUpdate(id, body, {
+            useFindAndModify: false
+        });
 
+        if (petDb) {
+            return res.json({
+                status: 200,
+                message: 'Mascota actualizada correctamente'
+            });
+        }
+        return res.json({
+            status: 404,
+            message: 'Mascota no encontrada'
+        });
     } catch (error) {
         console.log(error);
+        res.json({
+            status: 500,
+            message: 'Error al actualizar la mascota'
+        });
     }
 })
 
