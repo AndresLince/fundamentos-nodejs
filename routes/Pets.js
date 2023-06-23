@@ -55,4 +55,29 @@ router.get('/:id', async(req, res) => {
 
 });
 
+router.delete('/:id', async(req, res) => {
+    const id = req.params.id;
+
+    try {
+        const deletedPet = pet.findByIdAndDelete({ _id: id});
+        if (deletedPet) {
+            res.json({
+                status: 200,
+                message: 'Mascota eliminada correctamente'
+            });
+        } else {
+            res.json({
+                status: 404,
+                message: 'Mascota no encontrada'
+            });
+        }
+    } catch (error) {
+        console.log(error);
+        res.json({
+            status: 500,
+            message: 'Error al eliminar la mascota'
+        });
+    }
+})
+
 module.exports = router;
