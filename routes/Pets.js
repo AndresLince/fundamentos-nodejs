@@ -78,6 +78,16 @@ router.delete('/:id', async(req, res) => {
             message: 'Error al eliminar la mascota'
         });
     }
+});
+
+router.put('/:id', async(req, res) => {
+    const id = req.params.id;
+    const body = req.body;
+    try {
+
+    } catch (error) {
+        console.log(error);
+    }
 })
 
 module.exports = router;
