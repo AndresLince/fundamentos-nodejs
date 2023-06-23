@@ -30,7 +30,7 @@
                                 <%= pet.description %>
                             </td>
                             <td>
-                                <a class="btn btn-danger" id="btnDelete">
+                                <a class="btn btn-danger" id="btnDelete" data-id="<%= pet.id %>">
                                     Eliminar
                                 </a>
                             </td>
@@ -45,3 +45,24 @@
         </div>
 
         <%- include('template/footer') %>
+
+        <script>
+            const deleteButton = document.getElementById('btnDelete');
+            deleteButton.addEventListener('click', async() => {
+                const id = deleteButton.dataset.id;
+
+                try {
+                    const data = await fetch(`/pets/${id}`, {
+                        method: 'delete'
+                    });
+                    const response = await data.json();
+                    if (response.status == 200) {
+                        location.href = '/pets';
+                    } else {
+                        console.log(response);
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+            });
+        </script>
